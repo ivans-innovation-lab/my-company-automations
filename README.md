@@ -1,6 +1,4 @@
-# @atomist/automation-seed
-
-[![Build Status](https://travis-ci.org/atomist/automation-seed-ts.svg?branch=master)](https://travis-ci.org/atomist/automation-seed-ts)
+# my-company-automations
 
 This repository contains examples demonstrating use of
 the [Atomist][atomist] API.  You will find examples illustrating:
@@ -48,8 +46,8 @@ To get started run the following commands to clone the project,
 install its dependencies, and build the project:
 
 ```
-$ git clone git@github.com:atomist/automation-seed-ts.git
-$ cd automation-seed-ts
+$ git clone git@github.com:atomist/my-company-automations.git
+$ cd my-company-automations
 $ npm install
 $ npm run build
 ```
@@ -67,6 +65,7 @@ $ `npm bin`/atomist config [SLACK_TEAM_ID]
 The script does two things: records what Slack team you want your
 automations running in and creates
 a [GitHub personal access token][token] with "read:org" scope.
+You should add "repo" scopes to that [token][token] on Github, so your commands can change/add the repos.
 
 You must run the automations in a Slack team of which you are a
 member.  You can get the Slack team ID by typing `team` in a DM to the
@@ -158,15 +157,12 @@ Slack team.
 [nop-readme]: https://github.com/atomist-playground/notify-on-push/edit/master/README.md (Edit NotifyOnPush README)
 [nop-channel]: https://atomist-playground.slack.com/messages/C7GNF6743/ (NotifyOnPush Slack Channel)
 
-## Support
 
-General support questions should be discussed in the `#support`
-channel in our community Slack team
-at [atomist-community.slack.com][slack].
+## Support
 
 If you find a problem, please create an [issue][].
 
-[issue]: https://github.com/atomist/automation-seed-ts/issues
+[issue]: https://github.com/ivans-innovation-lab/my-company-automations/issues
 
 ## Development
 
@@ -185,29 +181,12 @@ Command | Reason
 `npm run autotest` | run tests continuously
 `npm run clean` | remove stray compiled JavaScript files and build directory
 
-### Release
-
-To create a new release of the project, simply push a tag of the form
-`M.N.P` where `M`, `N`, and `P` are integers that form the next
-appropriate [semantic version][semver] for release.  The version in
-the package.json must be the same as the tag.  For example:
-
-[semver]: http://semver.org
-
-```
-$ git tag -a 1.2.3
-$ git push --tags
-```
-
-The Travis CI build (see badge at the top of this page) will publish
-the NPM module and automatically create a GitHub release using the tag
-name for the release and the comment provided on the annotated tag as
-the contents of the release notes.
 
 ---
-
-Created by [Atomist][atomist].
+Created by [Ivan Dugalic][idugalic]@[lab][lab].
 Need Help?  [Join our Slack team][slack].
 
+[idugalic]: http://idugalic.pro
+[lab]: http://lab.idugalic.pro
+[slack]: https://communityinviter.com/apps/idugalic/idugalic
 [atomist]: https://www.atomist.com/
-[slack]: https://join.atomist.com
