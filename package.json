@@ -18,7 +18,8 @@
     "seed"
   ],
   "dependencies": {
-    "@atomist/automation-client": "^0.3.5",
+    "@atomist/automation-client": "https://r.atomist.com/SkBP67QRez",
+    "@atomist/spring-automation": "0.2.0",
     "app-root-path": "^2.0.1"
   },
   "devDependencies": {

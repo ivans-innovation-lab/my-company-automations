@@ -16,7 +16,7 @@
 
 import { Configuration } from "@atomist/automation-client";
 import * as appRoot from "app-root-path";
-
+import { commandSideGenerator } from "./commands/generator/commandSideGenerator";
 import { HelloWorld } from "./commands/HelloWorld";
 import { NotifyOnPush } from "./events/NotifyOnPush";
 
@@ -32,6 +32,7 @@ export const configuration: Configuration = {
     teamIds: [], // <-- run `@atomist team` in your slack team to obtain the team id
     commands: [
         () => new HelloWorld(),
+        () => commandSideGenerator(),
     ],
     events: [
         () => new NotifyOnPush(),
