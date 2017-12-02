@@ -104,13 +104,14 @@ $ npm run autostart
 
 ## Invoking a command handler from Slack
 
+### Hello world
 This project contains the code to create and respond to a simple
 `hello world` bot command.  The code that defines the bot command and
 implements responding to the command, i.e., the _command handler_, can
 be found in [`HelloWorld.ts`][hello].  Once you have your local
-automation client running (the previous step in this guide), you can
+automation client running (`npm run start`), you can
 invoke the command handler by sending the Atomist bot the command in
-the `#general` channel of the [atomist-playground Slack team][play-slack]:
+the `#general` channel:
 
 ```
 @atomist hello world
@@ -121,41 +122,27 @@ and outgoing messages show up in the logs of your locally running
 automation-client.  Ultimately, you should see the response from the
 bot in Slack.
 
-[hello]: https://github.com/atomist/automation-seed-ts/blob/master/src/commands/HelloWorld.ts (HelloWorld Command Handler)
+[hello]: https://github.com/ivans-innovation-lab/my-company-automations/blob/master/src/commands/HelloWorld.ts (HelloWorld Command Handler)
 
-Feel free to modify the code in the `HelloWorld` command handler,
-Node.js will automatically reload the client, and see what happens!
+### Command/Domain side project generator
+This project contains the code to create and respond to a simple
+`generate command side API` bot command.  The code that defines the bot command and
+implements responding to the command, i.e., the _command handler_, can
+be found in [`commandSideGenerator.ts`][commandSideGenerator].  Once you have your local
+automation client running (`npm run start`), you can
+invoke the command handler by sending the Atomist bot the command in
+the `#general` channel:
 
-## Triggering an event handler
+```
+@atomist generate command side API
+```
 
-While command handlers respond to commands you send the Atomist bot,
-_event handlers_ take action when different types of events occur in
-your development and operations environment.  Some examples of events
-are commits pushed to a repo, or a CI build that fails, or an instance
-of a running service that becomes unhealthy.  Example responses to those
-events are showing the commits in a Slack message, automatically
-restarting the build, and triggering a PagerDuty alert, respectively.
+Once you've submitted the command in Slack, you'll see the incoming
+and outgoing messages show up in the logs of your locally running
+automation-client.  Ultimately, you should see the response from the
+bot in Slack, asking you for some of the parameters for your new 'command side' project on Github.
 
-The sample event handler in this project, [NotifyOnPush][nop-handler],
-will notice when someone pushes new commits to a repository in the
-GitHub organization and send a notice of that push to all Slack
-channels associated with that repository.
-
-If you have followed the instructions above and are running these
-automations against the atomist-playground Slack team and GitHub
-organization, go ahead and edit the [notify-on-push][nop-repo]
-repository by adding some text to its [README][nop-readme].  Once you
-have saved your changes, you should see that event appear in the
-console logs of your locally running automation client, followed by a
-log of the actions the event handler is taking.  Once those actions
-are complete, you should see a new message in the
-[`#notify-on-push`][nop-channel] channel in the atomist-playground
-Slack team.
-
-[nop-handler]: https://github.com/atomist/automation-seed-ts/blob/master/src/events/NotifyOnPush.ts (Atomist NotifyOnPush Event Handler)
-[nop-repo]: https://github.com/atomist-playground/notify-on-push (Atomist NotifyOnPush Repository)
-[nop-readme]: https://github.com/atomist-playground/notify-on-push/edit/master/README.md (Edit NotifyOnPush README)
-[nop-channel]: https://atomist-playground.slack.com/messages/C7GNF6743/ (NotifyOnPush Slack Channel)
+[commandSideGenerator]: https://github.com/ivans-innovation-lab/my-company-automations/blob/master/src/commands/generator/commandSideGenerator.ts (Command Side Generator Command Handler)
 
 
 ## Support
