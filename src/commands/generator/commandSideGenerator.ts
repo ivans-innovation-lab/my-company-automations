@@ -6,12 +6,9 @@ import { generatorHandler } from "@atomist/automation-client/operations/generate
 import { ProjectPersister } from "@atomist/automation-client/operations/generate/generatorUtils";
 import { GitHubProjectPersister } from "@atomist/automation-client/operations/generate/gitHubProjectPersister";
 import { Project } from "@atomist/automation-client/project/Project";
-import { doWithFiles } from "@atomist/automation-client/project/util/projectUtils";
-import {
-    doUpdatePom,
-    inferStructureAndMovePackage,
-} from "@atomist/spring-automation/commands/generator/java/JavaProjectParameters";
+import { inferStructureAndMovePackage } from "@atomist/spring-automation/commands/generator/java/JavaProjectParameters";
 import { curry } from "@typed/curry";
+import { doUpdateCircleCI, doUpdatePom, setReadMe } from "../../util/Utils";
 import { CommandSideGeneratorParameters } from "./CommandSideProjectParameters";
 
 export function commandSideGenerator(projectPersister: ProjectPersister =
@@ -28,18 +25,9 @@ export function commandSideGenerator(projectPersister: ProjectPersister =
 }
 
 function commandSideProjectEditor(params: CommandSideGeneratorParameters): AnyProjectEditor {
-
-    const editors: AnyProjectEditor[] = [
-        curry(cleanReadMe)(params.target.description),
-        curry(doUpdatePom)(params),
-        curry(inferStructureAndMovePackage)(params.rootPackage),
-    ];
-    return chainEditors(...editors);
-}
-
-function cleanReadMe(description: string, project: Project): Promise<Project> {
-    return doWithFiles(project, "README.md", readMe => {
-        readMe.setContent("# " + description + " \r\n\r\nThis component processes commands." +
+    const artifactId: string = "my-company-" + params.aggregateName.toLowerCase() + "-domain";
+    const groupId: string = "com.idugalic";
+    const readmeDescription: string = "This component processes commands." +
         " Commands are actions which change state in some way." +
         " The execution of these commands results in Events being generated which are persisted by Axon," +
         " and propagated out to other components (possibly on other VMs)." +
@@ -57,6 +45,16 @@ function cleanReadMe(description: string, project: Project): Promise<Project> {
         "Created by [Ivan Dugalic][idugalic]@[lab][lab].\r\nNeed Help? " +
         " [Join our Slack team][slack].\r\n\r\n" +
         "[idugalic]: http:\/\/idugalic.pro\r\n" +
-        "[lab]: http:\/\/lab.idugalic.pro\r\n[slack]: https:\/\/join.slack.com\/t\/idugalic\/signup");
-    });
+        "[lab]: http:\/\/lab.idugalic.pro\r\n" +
+        "[slack]: https:\/\/communityinviter.com\/apps\/idugalic\/idugalic";
+
+    const scm: string = "scm:git:https://github.com/" + params.target.owner + "/" + params.target.repo + ".git";
+
+    const editors: AnyProjectEditor[] = [
+        curry(setReadMe)(artifactId, readmeDescription),
+        curry(doUpdatePom)(artifactId, groupId, scm, params),
+        curry(doUpdateCircleCI)("my-company-blog-domain", artifactId),
+        curry(inferStructureAndMovePackage)(groupId),
+    ];
+    return chainEditors(...editors);
 }
