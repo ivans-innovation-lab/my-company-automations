@@ -14,17 +14,9 @@ module to implement a local client that connects to the Atomist API.
 
 ## Prerequisites
 
-### Access to Atomist testing environment
+### Access to our lab
 
-To get access to this preview, please reach out to members of Atomist
-in the `#support` channel of [atomist-community Slack team][slack].
-
-You'll receive an invitation to a [Slack team][play-slack]
-and [GitHub organization][play-gh] that can be used to explore this
-new approach to writing and running automations.
-
-[play-slack]: https://atomist-playground.slack.com (Atomist Playground Slack)
-[play-gh]: https://github.com/atomist-playground (Atomist Playground GitHub Organization)
+To get access to this lab, please register to [Ivan's Slack team][slack].You'll receive an invitation.
 
 ### Node.js
 
@@ -46,7 +38,7 @@ To get started run the following commands to clone the project,
 install its dependencies, and build the project:
 
 ```
-$ git clone git@github.com:atomist/my-company-automations.git
+$ git clone git@github.com:ivans-innovation-lab/my-company-automations.git
 $ cd my-company-automations
 $ npm install
 $ npm run build
@@ -72,8 +64,6 @@ member.  You can get the Slack team ID by typing `team` in a DM to the
 Atomist Bot.  If you do not supply the Slack team ID on the command
 line, the script will prompt you to enter it.
 
-> *The Slack team ID for atomist-playground is `T7GMF5USG`.*
-
 The `atomist-config` script will prompt you for your GitHub
 credentials.  It needs them to create the GitHub personal access
 token.  Atomist does not store your credentials and only writes the
@@ -87,10 +77,6 @@ allows members of the GitHub team `atomist-automation` to authenticate
 and register a new client.  You will have to create a team in your
 GitHub organization named `atomist-automation` and add the users who
 want to create and register automations to it.
-
-> *If you followed the instructions above and have been invited to
-> the [atomist-playground][play-gh] GitHub organization, you will have
-> been added to this team in that organization.*
 
 [token]: https://github.com/settings/tokens (GitHub Personal Access Tokens)
 
