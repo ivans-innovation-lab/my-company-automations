@@ -1,4 +1,4 @@
-# my-company-automations
+# [projects](http://ivans-innovation-lab.github.io/projects)/my-company-automations
 
 This repository contains examples demonstrating use of
 the [Atomist][atomist] API.  You will find examples illustrating:
