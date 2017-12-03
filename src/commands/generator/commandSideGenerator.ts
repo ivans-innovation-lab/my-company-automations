@@ -24,7 +24,7 @@ export function commandSideGenerator(projectPersister: ProjectPersister =
         });
 }
 
-function commandSideProjectEditor(params: CommandSideGeneratorParameters): AnyProjectEditor {
+function commandSideProjectEditor(params: CommandSideGeneratorParameters): AnyProjectEditor<any> {
     const artifactId: string = "my-company-" + params.aggregateName.toLowerCase() + "-domain";
     const groupId: string = "com.idugalic";
     const readmeDescription: string = "This component processes commands." +
